@@ -55,9 +55,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
+    
+    /**
+     * Enables dismissible alerts by attaching click listeners to all .close-button elements.
+    */
+   function setupDismissibleAlerts() {
+     document.querySelectorAll('.n-alert .close-button').forEach((button) => {
+       button.addEventListener('click', () => {
+         const alert = button.closest('.n-alert');
+         if (alert) {
+           alert.style.display = 'none';
+          }
+        });
+      });
+    }
   
     // Initialize
     initializeTheme();
     setupListeners();
+    setupDismissibleAlerts();
   });
   
