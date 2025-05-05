@@ -1,0 +1,50 @@
+{
+  "name": "numix-ui",
+  "version": "0.1.0-alpha",
+  "description": "A lightweight, themeable CSS and JavaScript UI library inspired by Numix design principles. [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)",
+  "main": "index.js",
+  "scripts": {
+    "minify:css": "csso css/numix-ui.css -o css/numix-ui.min.css",
+    "minify:js": "uglifyjs js/numix-ui.js -o js/numix-ui.min.js --compress --mangle",
+    "minify": "npm run minify:css && npm run minify:js",
+    "build": "npm run minify",
+    "serve": "npx http-server -p 8080 -c-1 .",
+    "open": "start http://localhost:8080",
+    "dev": "npm run build && npm run serve && npm run open",
+    "start": "echo 'Open index.html manually or serve it using a local server.'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/numix-ui/numix-ui.github.io.git"
+  },
+  "keywords": [
+    "ui",
+    "css",
+    "javascript",
+    "library",
+    "lightweight",
+    "theme",
+    "vanilla-js",
+    "numix",
+    "numix ui",
+    "numix design",
+    "numix icons",
+    "numix icon theme",
+    "numix circle",
+    "numix circle icons",
+    "numix circle icon theme",
+    "numix theme",
+    "design-system"
+  ],
+  "author": "LoboGuardian",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/numix-ui/numix-ui.github.io/issues"
+  },
+  "homepage": "https://github.com/numix-ui/numix-ui.github.io#readme",
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "uglify-js": "^3.19.3"
+  }
+}
