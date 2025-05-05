@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numix CSS Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for Numix-inspired styles (beyond Tailwind) */
+        :root {
+            /* Light Theme (Numix) */
+            --background: #dedede;
+            --card: #ffffff;
+            --text-primary: #333;
+            --text-secondary: #555;
+            --accent: #f0544c;
+            --border: #dcdcdc;
+            --input-focus-shadow: rgba(240, 84, 76, 0.2);
+            --disabled-opacity: 0.5;
+            --disabled-cursor: not-allowed;
+             /* Alert Colors */
+            --alert-success-bg: #e6f4eb;
+            --alert-success-text: #155724;
+            --alert-success-border: #c3e6cb;
+            --alert-info-bg: #e5f6fd;
+            --alert-info-text: #0c4080;
+            --alert-info-border: #b8e1f3;
+            --alert-warning-bg: #fff3cd;
+            --alert-warning-text: #856404;
+            --alert-warning-border: #ffeeba;
+            --alert-danger-bg: #f8d7da;
+            --alert-danger-text: #721c24;
+            --alert-danger-border: #f5c6cb;
+        }
+        .dark-theme {
+            /* Dark Theme (Numix) - Improved */
+            --background: #303030;
+            --card: #3a3a3a;
+            --text-primary: #eee;
+            --text-secondary: #ccc;
+            --accent: #f0544c;
+            --border: #505050;
+            --input-focus-shadow: rgba(240, 84, 76, 0.2);
+            --disabled-opacity: 0.3;
+            --disabled-cursor: not-allowed;
+             /* Alert Colors */
+            --alert-success-bg: #2a4d40;
+            --alert-success-text: #b2f1d1;
+            --alert-success-border: #2a4d40;
+            --alert-info-bg: #22405e;
+            --alert-info-text: #a8d5f1;
+            --alert-info-border: #22405e;
+            --alert-warning-bg: #594d00;
+            --alert-warning-text: #f5e092;
+            --alert-warning-border: #594d00;
+            --alert-danger-bg: #581c0c;
+            --alert-danger-text: #f1b0b7;
+            --alert-danger-border: #581c0c;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .n-card {
+            background-color: var(--card);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .n-card.n-card-square {
+            border-radius: 0;
+        }
+        .n-input {
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--card);
+            color: var(--text-primary);
+        }
+        .n-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--input-focus-shadow);
+        }
+        .n-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .n-button {
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .n-button:hover {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+        }
+        .n-button:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+        }
+        .n-button-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        .n-button-primary:hover {
+             background-color: color-mix(in srgb, var(--accent) 80%, black);
+        }
+        .n-button-secondary {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        .n-button-secondary:hover {
+            background-color: color-mix(in srgb, var(--accent) 20%, transparent);
+            color: white;
+        }
+        .n-button-rounded {
+            border-radius: 2rem;
+        }
+        .n-button-disabled {
+            background-color: #9ca3af;
+            color: white;
+            opacity: var(--disabled-opacity);
+            cursor: var(--disabled-cursor);
+            pointer-events: none;
+            transform: none;
+            box-shadow: none;
+        }
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: inline-block;
+            margin-right: 0.25rem;
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
+            vertical-align: middle;
+        }
+
+        /* Alerts */
+        .n-alert {
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .n-alert-success {
+            background-color: var(--alert-success-bg);
+            color: var(--alert-success-text);
+            border-color: var(--alert-success-border);
+        }
+        .n-alert-info {
+            background-color: var(--alert-info-bg);
+            color: var(--alert-info-text);
+            border-color: var(--alert-info-border);
+        }
+        .n-alert-warning {
+            background-color: var(--alert-warning-bg);
+            color: var(--alert-warning-text);
+            border-color: var(--alert-warning-border);
+        }
+        .n-alert-danger {
+            background-color: var(--alert-danger-bg);
+            color: var(--alert-danger-text);
+            border-color: var(--alert-danger-border);
+        }
+        .n-alert-dismissible {
+            padding-right: 4rem;
+        }
+        .n-alert-dismissible .close-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 1rem;
+            color: inherit;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            font-size: 1.25rem;
+            line-height: 1;
+            transition: color 0.2s ease;
+            opacity: 0.5;
+        }
+        .n-alert-dismissible .close-button:hover {
+            opacity: 0.8;
+        }
+
+        /* Progress Bar */
+        .n-progress {
+            background-color: #e0e0e0;
+            border-radius: 0.5rem;
+            height: 1rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .n-progress-bar {
+            background-color: var(--accent);
+            height: 100%;
+            border-radius: 0.5rem;
+            transition: width 0.5s ease;
+            width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+        .n-progress-bar.striped {
+            background-image: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, .15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, .15) 50%,
+                rgba(255, 255, 255, .15) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 1rem 1rem;
+            animation: move 1s linear infinite;
+        }
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 1rem 0; }
+        }
+
+        /* Typography */
+        .heading-1 {
+            font-size: 2.25rem;  /* slightly smaller h1 */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        .heading-2 {
+            font-size: 1.75rem;  /* slightly smaller h2 */
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+        .heading-3 {
+            font-size: 1.375rem; /* slightly smaller h3 */
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .heading-4 {
+            font-size: 1.125rem; /* slightly smaller h4 */
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        .lead {
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .paragraph{
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        .small-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .blockquote {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 0.25rem solid var(--accent);
+            border-radius: 0.375rem;
+            background-color: color-mix(in srgb, var(--accent) 10%, var(--background));
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        .blockquote-footer {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Numix CSS Library</h1>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Buttons</h2>
+            <div class="flex flex-wrap gap-4">
+                <button class="n-button n-button-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M5 13h14M5 17h14M5 9h14M5 5h14"/></svg>
+                    Default
+                </button>
+                <button class="n-button n-button-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M12 20c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/></svg>
+                    Outline
+                </button>
+                <button class="n-button n-button-primary n-button-rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M10.21 4.133c.838-2.31 3.824-2.31 4.662 0l4.172 11.482a1.5 1.5 0 0 1-1.317 2.175H7.355a1.5 1.5 0 0 1-1.317-2.175l4.172-11.482z"/></svg>
+                    Rounded
+                </button>
+                <button class="n-button n-button-disabled">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon"><path d="M9.172 16.242a.997.997 0 0 1-1.414 0l-4.243-4.243a.999.999 0 0 1 0-1.414l4.243-4.243a.997.997 0 0 1 1.414 0l4.243 4.243a.999.999 0 0 1 0 1.414l-4.243 4.243zM14 10h8a1 1 0 0 0 0-2h-8a1 1 0 0 0 0 2z"/></svg>
+                    Disabled
+                </button>
+            </div>
+            <div class="mt-4">
+                <button id="theme-toggle" class="n-button n-button-secondary">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon">
+                        <path d="M12 3v1m9 8h-1m-9 8v-1m-5-5h1m-6-2l1-1m18 0l-1 1m-4 3h-1m15-5v1m-1-1l-1-1M5.636 5.636l.707.707m12.728 0l-.707.707M6.343 17.657l.707-.707M17.657 6.343l-.707-.707z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    <span id="theme-text">Dark</span>
+                </button>
+            </div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Cards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="n-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 1</h3>
+                    <p class="text-gray-600">This is a simple card with some content.</p>
+                </div>
+                <div class="n-card n-card-square">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Card Title 2</h3>
+                    <p class="text-gray-600">This is a square card.</p>
+                </div>
+            </div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Forms</h2>
+            <div class="w-full max-w-md mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="n-label">Name</label>
+                    <input type="text" id="name" class="n-input" placeholder="Your Name">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="n-label">Email</label>
+                    <input type="email" id="email" class="n-input" placeholder="Your Email">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="n-label">Message</label>
+                    <textarea id="message" class="n-input" placeholder="Your Message" rows="4"></textarea>
+                </div>
+                <button class="n-button n-button-primary w-full">Send Message</button>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Alerts</h2>
+            <div class="n-alert n-alert-success n-alert-dismissible">
+                <button class="close-button" onclick="this.parentElement.style.display='none';">&times;</button>
+                <strong>Success!</strong> Your action was completed successfully.
+            </div>
+            <div class="n-alert n-alert-info n-alert-dismissible">
+                 <button class="close-button" onclick="this.parentElement.style.display='none';">&times;</button>
+                <strong>Info!</strong> This is an informational message.
+            </div>
+            <div class="n-alert n-alert-warning n-alert-dismissible">
+                 <button class="close-button" onclick="this.parentElement.style.display='none';">&times;</button>
+                <strong>Warning!</strong>  There might be an issue.
+            </div>
+            <div class="n-alert n-alert-danger n-alert-dismissible">
+                <button class="close-button" onclick="this.parentElement.style.display='none';">&times;</button>
+                <strong>Error!</strong> Something went wrong.
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Progress Bars</h2>
+            <div class="n-progress">
+                <div class="n-progress-bar" style="width: 25%">25%</div>
+            </div>
+            <div class="n-progress">
+                <div class="n-progress-bar striped" style="width: 50%">50%</div>
+            </div>
+            <div class="n-progress">
+                <div class="n-progress-bar" style="width: 75%">75%</div>
+            </div>
+             <div class="n-progress">
+                <div class="n-progress-bar" style="width: 100%">100%</div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Typography</h2>
+            <h1 class="heading-1">Heading 1</h1>
+            <h2 class="heading-2">Heading 2</h2>
+            <h3 class="heading-3">Heading 3</h3>
+            <h4 class="heading-4">Heading 4</h4>
+            <p class="lead">This is a lead paragraph.  It is used to introduce the main content of a section.</p>
+            <p class="paragraph">This is a standard paragraph.  It should be used for the main body of text.  The line height is set to 1.7 for better readability.  We are using the Inter font, which is a modern sans-serif font.</p>
+            <p class="small-text">This is small text.  It is used for captions, footnotes, and other auxiliary information.</p>
+
+            <blockquote class="blockquote">
+                <p class="mb-0">"The best way to predict the future is to invent it."</p>
+                <footer class="blockquote-footer">Alan Kay</footer>
+            </blockquote>
+        </section>
+    </div>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        const body = document.body;
+        const LIGHT_ICON = `<path d="M12 3v1m9 8h-1m-9 8v-1m-5-5h1m-6-2l1-1m18 0l-1 1m-4 3h-1m15-5v1m-1-1l-1-1M5.636 5.636l.707.707m12.728 0l-.707.707M6.343 17.657l.707-.707M17.657 6.343l-.707-.707z"/><circle cx="12" cy="12" r="3"/>`;
+        const DARK_ICON = `<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/>`;
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                body.classList.add('dark-theme');
+                themeIcon.innerHTML = LIGHT_ICON;
+                themeText.textContent = 'Light';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-theme');
+                themeIcon.innerHTML = DARK_ICON;
+                themeText.textContent = 'Dark';
+                localStorage.setItem('theme', 'light');
+            }
+        };
+        const savedTheme = localStorage.getItem('theme');
+        setTheme(savedTheme || 'light');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = localStorage.getItem('theme');
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
