@@ -17,7 +17,7 @@ Numix UI is a CSS library that brings the distinctive look and feel of the popul
 * **Open Source:** Free to use and modify under the GPL-3.0 license.
 
 ## Screenshots
-![Numix UI Screenshot](assets/img/Numix-UI-Screenshot-v0.1.png)
+![Numix UI Screenshot](https://github.com/numix-ui/design-assets/blob/main/screenshots/Numix-UI-Screenshot-v0.1.png)
 
 ## Installation
 
